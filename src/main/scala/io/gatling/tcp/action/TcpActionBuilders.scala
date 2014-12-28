@@ -13,7 +13,7 @@ class TcpConnectActionBuilder(requestName: Expression[String]) extends ActionBui
    * @param protocols the protocols configurations
    * @return the resulting Action actor
    */
-  override def build(next: ActorRef, protocols: Protocols): ActorRef = actor(actorName("tcpConnect"))(new TcpConnectAction(requestName, next,
+  override def build(next: ActorRef, protocols: Protocols): ActorRef = actor(new TcpConnectAction(requestName, next,
     protocols.getProtocol[TcpProtocol].getOrElse(throw new UnsupportedOperationException("Tcp Protocol wasn't registered"))))
 }
 
@@ -23,7 +23,7 @@ class TcpSendActionBuilder(requestName: Expression[String], message: Expression[
    * @param protocols the protocols configurations
    * @return the resulting Action actor
    */
-  override def build(next: ActorRef, protocols: Protocols): ActorRef = actor(actorName("tcpSend"))(new TcpSendAction(requestName, next, message, checkBuilder))
+  override def build(next: ActorRef, protocols: Protocols): ActorRef = actor(new TcpSendAction(requestName, next, message, checkBuilder))
 
   def check(checkBuilder: TcpCheckBuilder) = new TcpSendActionBuilder(requestName, message, Some(checkBuilder))
 }
@@ -34,5 +34,5 @@ class TcpDisconnectActionBuilder(requestName: Expression[String]) extends Action
    * @param protocols the protocols configurations
    * @return the resulting Action actor
    */
-  override def build(next: ActorRef, protocols: Protocols): ActorRef = actor(actorName("tcpDisconnect"))(new TcpCloseAction(requestName, next))
+  override def build(next: ActorRef, protocols: Protocols): ActorRef = actor(new TcpCloseAction(requestName, next))
 }

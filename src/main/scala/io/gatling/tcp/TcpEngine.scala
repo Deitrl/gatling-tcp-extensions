@@ -4,7 +4,7 @@ import java.net.InetSocketAddress
 import java.util.concurrent.{ Executors, TimeUnit }
 
 import akka.actor.ActorRef
-import com.typesafe.scalalogging.StrictLogging
+import com.typesafe.scalalogging.slf4j.StrictLogging
 import io.gatling.core.akka.AkkaDefaults
 import io.gatling.core.check.Check
 import io.gatling.core.session.Session
